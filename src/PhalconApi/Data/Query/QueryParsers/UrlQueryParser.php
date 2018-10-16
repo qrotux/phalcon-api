@@ -29,6 +29,7 @@ class UrlQueryParser
 
     const SORT_ASCENDING = 1;
     const SORT_DESCENDING = -1;
+    const SORT_NONE = 0;
 
     protected $enabledFeatures = [ self::FIELDS, self::OFFSET, self::LIMIT, self::HAVING, self::WHERE, self::SORT, self::EXCLUDES ];
 
@@ -129,9 +130,15 @@ class UrlQueryParser
                         $direction = Sorter::DESCENDING;
                         break;
                     case self::SORT_ASCENDING:
-                    default:
                         $direction = Sorter::ASCENDING;
                         break;
+                    case self::SORT_NONE:
+                    default:
+                        $direction = null;
+                }
+
+                if (!$direction) {
+                    continue;
                 }
 
                 $query->addSorter(new Sorter($field, $direction));

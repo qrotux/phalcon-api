@@ -1,7 +1,7 @@
 {
     "name": "qrotux/phalcon-api",
     "description": "Phalcon API Library",
-    "version": "2.0.2",
+    "version": "2.0.3",
     "require": {
         "php": ">=5.6",
         "ext-phalcon": ">=2.0.0"
