@@ -19,11 +19,34 @@ class Query
     const OPERATOR_CONTAINS = 9;
     const OPERATOR_NOT_CONTAINS = 10;
 
+    /**
+     * @var int|null
+     */
     protected $offset = null;
+
+    /**
+     * @var int|null
+     */
     protected $limit = null;
+
+    /**
+     * @var string[]
+     */
     protected $fields = [];
+
+    /**
+     * @var Condition[]
+     */
     protected $conditions = [];
+
+    /**
+     * @var Sorter[]
+     */
     protected $sorters = [];
+
+    /**
+     * @var string[]
+     */
     protected $excludes = [];
 
     public function __construct()
