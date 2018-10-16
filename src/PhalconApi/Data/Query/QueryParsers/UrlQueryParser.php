@@ -206,7 +206,7 @@ class UrlQueryParser
             return null;
         }
 
-        if (!$result = json_decode($result, true)) {
+        if (!is_array($result) and !$result = json_decode($result, true)) {
             return null;
         }
 
