@@ -49,6 +49,11 @@ class Query
      */
     protected $excludes = [];
 
+    /**
+     * @var string[]
+     */
+    protected $includes = [];
+
     public function __construct()
     {
 
@@ -96,6 +101,10 @@ class Query
 
         if ($query->hasExcludes()) {
             $this->addManyExcludes($query->getExcludes());
+        }
+
+        if ($query->hasIncludes()) {
+            $this->addManyIncludes($query->getIncludes());
         }
 
         return $this;
@@ -195,5 +204,21 @@ class Query
     public function getExcludes()
     {
         return $this->excludes;
+    }
+
+    public function hasIncludes()
+    {
+        return !empty($this->includes);
+    }
+
+    public function addManyIncludes($includes)
+    {
+        $this->includes = array_merge($this->includes, $includes);
+        return $this;
+    }
+
+    public function getIncludes()
+    {
+        return $this->includes;
     }
 }
