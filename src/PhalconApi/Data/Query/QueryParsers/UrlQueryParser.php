@@ -152,7 +152,7 @@ class UrlQueryParser
                         $direction = null;
                 }
 
-                if (!$direction) {
+                if ($direction === null) {
                     continue;
                 }
 
