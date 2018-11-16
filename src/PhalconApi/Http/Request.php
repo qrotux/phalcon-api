@@ -81,32 +81,26 @@ class Request extends \Phalcon\Http\Request
     {
         $method = $httpMethod !== null ? $httpMethod : $this->postedDataMethod;
 
-        if($method == PostedDataMethods::AUTO){
+        if ($method === PostedDataMethods::AUTO) {
 
-            if ($this->getContentType() === 'application/json') {
+            if (strpos($this->getContentType(), 'application/json') === 0) {
                 $method = PostedDataMethods::JSON_BODY;
-            }
-            else if($this->isPost()){
+            } else if ($this->isPost()) {
                 $method = PostedDataMethods::POST;
-            }
-            else if($this->isPut()){
+            } else if ($this->isPut()) {
                 $method = PostedDataMethods::PUT;
-            }
-            else if($this->isGet()) {
+            } else if ($this->isGet()) {
                 $method = PostedDataMethods::GET;
             }
         }
 
-        if ($method == PostedDataMethods::JSON_BODY) {
+        if ($method === PostedDataMethods::JSON_BODY) {
             return $this->getJsonRawBody(true);
-        }
-        else if($method == PostedDataMethods::POST) {
+        } else if ($method === PostedDataMethods::POST) {
             return $this->getPost();
-        }
-        else if($method == PostedDataMethods::PUT) {
+        } else if ($method === PostedDataMethods::PUT) {
             return $this->getPut();
-        }
-        else if($method == PostedDataMethods::GET) {
+        } else if ($method === PostedDataMethods::GET) {
             return $this->getQuery();
         }
 
