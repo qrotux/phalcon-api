@@ -27,6 +27,11 @@ class Query
     /**
      * @var int|null
      */
+    protected $page = null;
+
+    /**
+     * @var int|null
+     */
     protected $limit = null;
 
     /**
@@ -87,6 +92,10 @@ class Query
             $this->setOffset($query->getOffset());
         }
 
+        if ($query->hasPage()) {
+            $this->setPage($query->getPage());
+        }
+
         if ($query->hasLimit()) {
             $this->setLimit($query->getLimit());
         }
@@ -139,6 +148,22 @@ class Query
     public function setOffset($offset)
     {
         $this->offset = $offset;
+        return $this;
+    }
+
+    public function hasPage()
+    {
+        return !is_null($this->page);
+    }
+
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    public function setPage($page)
+    {
+        $this->page = $page;
         return $this;
     }
 

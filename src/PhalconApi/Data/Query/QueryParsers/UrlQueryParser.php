@@ -10,6 +10,7 @@ class UrlQueryParser
 {
     const FIELDS = 'fields';
     const OFFSET = 'offset';
+    const PAGE = 'page';
     const LIMIT = 'limit';
     const HAVING = 'having';
     const WHERE = 'where';
@@ -35,6 +36,7 @@ class UrlQueryParser
     protected $enabledFeatures = [
         self::FIELDS,
         self::OFFSET,
+        self::PAGE,
         self::LIMIT,
         self::HAVING,
         self::WHERE,
@@ -50,6 +52,7 @@ class UrlQueryParser
 
         $fields = $this->isEnabled(self::FIELDS) ? $this->extractCommaSeparatedValues($params, 'fields') : null;
         $offset = $this->isEnabled(self::OFFSET) ? $this->extractInt($params, 'offset') : null;
+        $page = $this->isEnabled(self::PAGE) ? $this->extractInt($params, 'page') : null;
         $limit = $this->isEnabled(self::LIMIT) ? $this->extractInt($params, 'limit') : null;
         $having = $this->isEnabled(self::HAVING) ? $this->extractArray($params, 'having') : null;
         $where = $this->isEnabled(self::WHERE) ? $this->extractArray($params, 'where') : null;
@@ -65,6 +68,10 @@ class UrlQueryParser
 
         if ($offset) {
             $query->setOffset($offset);
+        }
+
+        if ($page) {
+            $query->setPage($page);
         }
 
         if ($limit) {
